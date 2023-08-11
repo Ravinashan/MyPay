@@ -1,4 +1,5 @@
 package com.MyPay.MyPay.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -25,10 +26,16 @@ public class Payment {
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
+    @OneToOne
+    @JoinColumn(name = "usercardid")
+    private UserCard usercard;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "userid")
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "counterid")
     private Counter counter;

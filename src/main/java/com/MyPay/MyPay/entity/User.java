@@ -28,27 +28,44 @@ public class User {
     @Column(name = "useraddress")
     private String useraddress;
 
+    @Column(name = "passsword")
+    private String password;
 
-    public User( int phonenumber , String useraddress ,  String username ){
+
+
+    public User(String password , int phonenumber , String useraddress ,  String username ){
 
         this.phonenumber = phonenumber;
         this.useraddress = useraddress;
         this.username = username;
+        this.password = password;
 
 
     }
-    public User(int userid, int phonenumber , String useraddress ,  String username  ){
+    public User(int userid , int phonenumber , String useraddress ,  String username ){
+
+        this.phonenumber = phonenumber;
+        this.useraddress = useraddress;
+        this.username = username;
+        this.userid = userid;
+
+
+    }
+
+
+    public User(int userid , String password, int phonenumber , String useraddress ,  String username   ){
 
         this.userid = userid;
         this.phonenumber = phonenumber;
         this.useraddress = useraddress;
         this.username = username;
+        this.password = password;
 
 
     }
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.MERGE)
-    private List<Card> cards;
+    private List<UserCard> cards;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
     private List<Payment> payments;

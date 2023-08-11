@@ -14,7 +14,14 @@ public interface UserService {
 
     ResponseEntity<?> validateUserPhoneNumber(Integer phonenumber);
 
-    ResponseEntity<?> registerUser(Integer phonenumber , String useraddress, String username );
+    ResponseEntity<?> registerUser(String password, Integer phonenumber , String useraddress, String username  );
+
+    ResponseEntity<?> loginUser(Integer phonenumber , String password);
+
+    ResponseEntity<?> updateUserInformation(Integer userId, String useraddress, String username , String password , Integer phonenumber );
+
+
+
 
 
 

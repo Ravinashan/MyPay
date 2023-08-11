@@ -26,11 +26,48 @@ public class Merchant {
     @Column(name = "merchantaddress")
     private String merchantaddress;
 
+    @Column(name = "password")
+    private String password;
+
+
     @OneToMany(mappedBy = "merchant" , cascade = CascadeType.MERGE)
-    private List<Card> cards;
+    private List<MerchantCard> cards;
 
     @OneToMany(mappedBy = "merchant" , cascade = CascadeType.MERGE)
     private List<Shop> shops;
+
+    public Merchant(String password , int phonenumber , String useraddress ,  String username ){
+
+        this.phonenumber = phonenumber;
+        this.merchantaddress = useraddress;
+        this.merchantname = username;
+        this.password = password;
+
+
+    }
+    public Merchant(int userid , int phonenumber , String useraddress ,  String username ){
+
+        this.phonenumber = phonenumber;
+        this.merchantaddress = useraddress;
+        this.merchantname = username;
+        this.merchantid = userid;
+
+
+    }
+
+
+    public Merchant(int userid , String password, int phonenumber , String useraddress ,  String username   ){
+
+        this.merchantid = userid;
+        this.phonenumber = phonenumber;
+        this.merchantaddress = useraddress;
+        this.merchantname = username;
+        this.password = password;
+
+
+    }
+
+
 
 
 }

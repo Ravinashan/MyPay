@@ -34,11 +34,21 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<?> registerUser(@RequestParam Integer phonenumber,
-                                          @RequestParam String username,
-                                          @RequestParam String useraddress) {
-        ResponseEntity<?> registrationResponse = userService.registerUser(phonenumber, useraddress, username);
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        ResponseEntity<?> registrationResponse = userService.registerUser(user.getPassword(), user.getPhonenumber(),user.getUseraddress(),user.getUsername());
         return registrationResponse;
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<?> loginUser(@RequestBody User body) {
+        ResponseEntity<?> loginResponse =  userService.loginUser(body.getPhonenumber(), body.getPassword());
+        return loginResponse;
+    }
+
+    @PutMapping(value = "/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody User user) {
+        ResponseEntity<?> updateResponse = userService.updateUserInformation(id, user.getUseraddress(), user.getUsername(), user.getPassword(),user.getPhonenumber() );
+        return updateResponse;
     }
 
 

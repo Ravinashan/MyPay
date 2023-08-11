@@ -1,4 +1,5 @@
 package com.MyPay.MyPay.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -16,12 +17,13 @@ public class Counter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "counter id")
+    @Column(name = "counterid")
     private int counterid;
 
     @Column(name = "wallet")
     private float wallet;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shopid")
     private Shop shop;
